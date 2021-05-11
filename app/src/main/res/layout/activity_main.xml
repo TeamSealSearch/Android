@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/cartoonSeal" />
+        app:srcCompat="@drawable/cute_seal_1" />
 
     <TextView
         android:id="@+id/textView"
@@ -39,8 +39,8 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="48dp"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
-        android:text="Username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword"
-        android:text="Password"
         app:layout_constraintEnd_toEndOf="@+id/loginUsername"
         app:layout_constraintStart_toStartOf="@+id/loginUsername"
         app:layout_constraintTop_toBottomOf="@+id/loginUsername" />
