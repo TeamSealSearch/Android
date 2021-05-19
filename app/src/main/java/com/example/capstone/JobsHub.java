@@ -19,6 +19,8 @@ import androidx.appcompat.widget.Toolbar;
 public class JobsHub extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private DrawerLayout drawer;
+    private boolean employerMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class JobsHub extends AppCompatActivity {
             }
         });
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -50,6 +52,8 @@ public class JobsHub extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration); //bind arrows + hamburger to bar
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        toggleMode();
     }
 
     @Override
@@ -64,5 +68,15 @@ public class JobsHub extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void toggleMode() {
+        NavigationView nav = findViewById(R.id.nav_view);
+        if (employerMode) {
+            nav.getMenu().setGroupVisible(R.id.applicantItems, false);
+        }
+        else {
+            nav.getMenu().setGroupVisible(R.id.employerItems, false);
+        }
     }
 }

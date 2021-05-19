@@ -3,12 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item android:title="e_filters" />
-        <item android:title="e_hibernate" />
-        <item android:title="e_approveCandidates" />
-        <item android:title="e_viewApps" />
-        <item android:title="e_edit" />
-        <item android:title="e_create" />
+    <group android:id="@+id/applicantItems" android:checkableBehavior="single">
+        <item
+            android:id="@+id/a_followedCompanies"
+            android:title="Followed Companies"
+        />
+
+        <item
+            android:title="Modify Resume"
+            android:id="@+id/a_modResume"
+        />
+
+        <item
+            android:id="@+id/a_modFilters"
+            android:title="Modify Filters"
+        />
+
+        <item android:id="@+id/a_browse"
+            android:title="Browse Jobs"
+        />
+    </group>
+
+    <group android:id="@+id/employerItems" android:checkableBehavior="single">
+
+        <item android:id="@+id/e_filters"
+            android:title="Modify Filters"
+            />
+
+        <item android:id="@+id/e_hibernate"
+            android:title="Hibernate Postings"
+            />
+
+        <item android:id="@+id/e_approveCandidates"
+            android:title="Approve Candidates"
+            />
+
+        <item android:id="@+id/e_viewApps"
+            android:title="View Applications"
+            />
+
+        <item android:id="@+id/e_edit"
+            android:title="Edit "
+            />
+
+        <item android:id="@+id/e_create"
+            android:title="Create Posting"
+            />
     </group>
 </menu>
