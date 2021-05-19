@@ -2,17 +2,23 @@ package com.example.capstone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "LoginScreen";
     private boolean employerMode = false;
     private String toggleFormatString = "Switch to %s";
+
 
     private EditText usernameField;
     private EditText passwordField;
@@ -39,5 +45,29 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.mainConstraint).setBackgroundColor(Color.LTGRAY);
         else
             findViewById(R.id.mainConstraint).setBackgroundColor(Color.BLUE);
+    }
+
+    public void createUser(View v) throws SQLException {
+        try {
+            LoginRunnable login = new LoginRunnable(this, "", "", "", "", "");
+            new Thread(login).start();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void login (View v) throws SQLException {
+        Intent toProfile = new Intent(this, JobsHub.class);
+
+        if (employerMode) {
+            //build an employer intent
+        }
+
+        else { //build an applicant intent
+            toProfile.putExtra("name", "John Sins");
+            toProfile.putExtra("mode", employerMode);
+            startActivity(toProfile);
+        }
     }
 }

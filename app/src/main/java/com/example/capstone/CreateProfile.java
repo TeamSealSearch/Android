@@ -3,6 +3,7 @@ package com.example.capstone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 public class CreateProfile extends AppCompatActivity {
 
@@ -10,5 +11,11 @@ public class CreateProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_profile);
+    }
+
+    public void createUser() {
+        Log.d("CREATE", "WORKED");
+//        LoginRunnable login = new LoginRunnable(this, "", "", "", "", "");
+//        login.run();
     }
 }
