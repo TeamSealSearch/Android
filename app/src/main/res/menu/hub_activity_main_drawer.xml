@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:title="e_filters" />
+        <item android:title="e_hibernate" />
+        <item android:title="e_approveCandidates" />
+        <item android:title="e_viewApps" />
+        <item android:title="e_edit" />
+        <item android:title="e_create" />
+    </group>
+</menu>
