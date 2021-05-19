@@ -1,13 +1,17 @@
 package com.example.capstone;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,10 +19,12 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+//https://guides.codepath.com/android/fragment-navigation-drawer
 
 public class JobsHub extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private NavigationView navigationView;
     private DrawerLayout drawer;
     private boolean employerMode = false;
 
@@ -40,7 +46,7 @@ public class JobsHub extends AppCompatActivity {
         });
 
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         //In other words, this sets top level destinations for all the fragments. Top level = they can see hamburger icon at all times
@@ -53,7 +59,8 @@ public class JobsHub extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration); //bind arrows + hamburger to bar
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        toggleMode();
+//        toggleMode();
+        setupDrawer();
     }
 
     @Override
@@ -70,13 +77,35 @@ public class JobsHub extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void toggleMode() {
-        NavigationView nav = findViewById(R.id.nav_view);
-        if (employerMode) {
-            nav.getMenu().setGroupVisible(R.id.applicantItems, false);
-        }
-        else {
-            nav.getMenu().setGroupVisible(R.id.employerItems, false);
+
+    private void setupDrawer() {
+        if (employerMode)
+            navigationView.getMenu().setGroupVisible(R.id.applicantItems, false);
+        else
+            navigationView.getMenu().setGroupVisible(R.id.employerItems, false);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                drawerItemSelected(item);
+                return true;
+            }
+        });
+    }
+
+    private void drawerItemSelected(MenuItem item) {
+        Fragment fragment = null;
+        Class fragmentClass;
+
+        switch(item.getItemId()) {
+            case R.id.a_followedCompanies:
+                Toast.makeText(this, "Now opening followed companies page", Toast.LENGTH_SHORT).show();
+            case R.id.a_browse:
+                Toast.makeText(this, "Now opening browse jobs page", Toast.LENGTH_SHORT).show();
+            case R.id.a_modFilters:
+                Toast.makeText(this, "Now opening modify filters page", Toast.LENGTH_SHORT).show();
+            case R.id.a_modResume:
+                Toast.makeText(this, "Now opening modify resume page", Toast.LENGTH_SHORT).show();
         }
     }
 }
