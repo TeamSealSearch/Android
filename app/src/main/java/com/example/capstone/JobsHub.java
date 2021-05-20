@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,49 +27,40 @@ import androidx.appcompat.widget.Toolbar;
 
 public class JobsHub extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActionBarDrawerToggle drawerToggle;
 
     private DrawerLayout drawer;
+    private Toolbar toolbar;
     private NavigationView navigationView;
 
+    private ActionBarDrawerToggle drawerToggle;
     private boolean employerMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jobs_hub);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-
+        setContentView(R.layout.hub_activity_main);
 
         //replace actionbar with the toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        //set up drawer
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        //In other words, this sets top level destinations for all the fragments. Top level = they can see hamburger icon at all times
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                .setDrawerLayout(drawer)
-                .build();
+        //set up the drawer icon
+        drawerToggle = setupDrawerToggle();
+        drawerToggle.setDrawerIndicatorEnabled(true);
+        drawerToggle.syncState();
 
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration); //bind arrows + hamburger to bar
-//        NavigationUI.setupWithNavController(navigationView, navController);
+        drawer.addDrawerListener(drawerToggle); //add listener to sync
 
-//        toggleMode();
-//        setupDrawer();
+        navigationView = (NavigationView) findViewById(R.id.nvView);
+        setupDrawer();
+    }
+
+    private ActionBarDrawerToggle setupDrawerToggle() {
+        return new ActionBarDrawerToggle(this, drawer, R.string.drawer_open, R.string.drawer_close);
     }
 
     @Override
@@ -89,42 +81,60 @@ public class JobsHub extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
 
 
-//    private void setupDrawer() {
-//        if (employerMode)
-//            navigationView.getMenu().setGroupVisible(R.id.applicantItems, false);
-//        else
-//            navigationView.getMenu().setGroupVisible(R.id.employerItems, false);
-//
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                drawerItemSelected(item);
-//                return true;
-//            }
-//        });
-//    }
+    private void setupDrawer() {
+        //only show the relevant menu items for a user
+        if (employerMode)
+            navigationView.getMenu().setGroupVisible(R.id.applicantItems, false);
+        else
+            navigationView.getMenu().setGroupVisible(R.id.employerItems, false);
 
-//    private void drawerItemSelected(MenuItem item) {
-//        Fragment fragment = null;
-//        Class fragmentClass;
-//
-//        switch(item.getItemId()) {
-//            case R.id.a_followedCompanies:
-//                Toast.makeText(this, "Now opening followed companies page", Toast.LENGTH_SHORT).show();
-//            case R.id.a_browse:
-//                Toast.makeText(this, "Now opening browse jobs page", Toast.LENGTH_SHORT).show();
-//            case R.id.a_modFilters:
-//                Toast.makeText(this, "Now opening modify filters page", Toast.LENGTH_SHORT).show();
-//            case R.id.a_modResume:
-//                Toast.makeText(this, "Now opening modify resume page", Toast.LENGTH_SHORT).show();
-//        }
-//    }
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                selectDrawerItem(item);
+                return true;
+            }
+        });
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        // Fragments are for DATA and LOGIC, Activities are for full swaps
+        Fragment fragment = null;
+        Class fragmentClass;
+
+        switch(menuItem.getItemId()) {
+            case R.id.a_followedCompanies:
+                fragmentClass = fragment_a_home.class;
+                break;
+//            case R.id.nav_second_fragment:
+//                fragmentClass = SecondFragment.class;
+//                break;
+//            case R.id.nav_third_fragment:
+//                fragmentClass = ThirdFragment.class;
+//                break;
+            default:
+                fragmentClass = fragment_a_home.class;
+        }
+
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        drawer.closeDrawers();
+    }
+
 }
