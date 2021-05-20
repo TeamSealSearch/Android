@@ -11,9 +11,6 @@ public class LoginRunnable implements Runnable {
     private MainActivity main;
     private String INSERT_APPLICANT = "INSERT INTO APPLICANT (a_hashedid, a_username, a_fname, a_lname, a_dob) VALUES (%s, %s, %s, %s, %s)";
 
-    private String azureURL = "jdbc:mysql://teamseal.mysql.database.azure.com:3306?useSSL=true&requireSSL=TRUE";
-    private Connection conn = DriverManager.getConnection(azureURL, "seal_admin@teamseal", "Password1");
-
     private final String hashedID;
     private final String userName;
     private final String firstName;
@@ -32,15 +29,19 @@ public class LoginRunnable implements Runnable {
     @Override
     public void run() {
         try {
-            Statement insertStatement = conn.createStatement();
-            INSERT_APPLICANT = String.format(INSERT_APPLICANT, "testHash", "testUname", "testFname", "testLname", "testDOB");
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            String azureURL = "jdbc:mysql://sealsearch.mysql.database.azure.com:3306/sealdb?useSSL=true&requireSSL=true";
+            Connection conn = DriverManager.getConnection(azureURL, "kingSeal@sealsearch", "Password1");
+
+            Statement queryStatement = conn.createStatement();
+            INSERT_APPLICANT = String.format(INSERT_APPLICANT, "'testHash1'", "'testUname'", "'testFname'", "'testLname'", "'2020-04-20'");
 
             StringBuilder sb = new StringBuilder();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(INSERT_APPLICANT);
+            int rs = stmt.executeUpdate(INSERT_APPLICANT);
 
-            System.out.println("HERE -->\t" + rs.toString());
+            System.out.println("HERE -->\t" + rs);
         }
 
         catch (Exception e) {e.printStackTrace();}

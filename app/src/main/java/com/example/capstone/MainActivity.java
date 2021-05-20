@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (employerMode) {
             //build an employer intent
+            toProfile.putExtra("name", "John Sins");
+            toProfile.putExtra("mode", employerMode);
+            startActivity(toProfile);
         }
 
         else { //build an applicant intent
