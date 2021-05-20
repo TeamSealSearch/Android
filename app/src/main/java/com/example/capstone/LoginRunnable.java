@@ -1,5 +1,7 @@
 package com.example.capstone;
 
+import org.json.JSONObject;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,6 +12,7 @@ public class LoginRunnable implements Runnable {
 
     private MainActivity main;
     private String INSERT_APPLICANT = "INSERT INTO APPLICANT (a_hashedid, a_username, a_fname, a_lname, a_dob) VALUES (%s, %s, %s, %s, %s)";
+    private JSONObject loginInformation;
 
     private final String hashedID;
     private final String userName;
