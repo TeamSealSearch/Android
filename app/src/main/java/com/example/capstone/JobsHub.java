@@ -72,11 +72,8 @@ public class JobsHub extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawer.openDrawer(GravityCompat.START);
-                return true;
-        }
+        if (drawerToggle.onOptionsItemSelected(item))
+            return true;
 
         return super.onOptionsItemSelected(item);
     }

@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class LoginRunnable implements Runnable {
 
-    private MainActivity main;
+    private CreateProfile main;
     private String INSERT_APPLICANT = "INSERT INTO APPLICANT (a_hashedid, a_username, a_fname, a_lname, a_dob) VALUES (%s, %s, %s, %s, %s)";
     private JSONObject loginInformation;
 
@@ -20,7 +20,7 @@ public class LoginRunnable implements Runnable {
     private final String lastName;
     private final String date_of_birth;
 
-    LoginRunnable(MainActivity m, String id, String uname, String fName, String lName, String DOB) throws SQLException {
+    LoginRunnable(CreateProfile m, String id, String uname, String fName, String lName, String DOB) throws SQLException {
         main = m;
         hashedID = id;
         userName = uname;

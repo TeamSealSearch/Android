@@ -48,13 +48,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createUser(View v) throws SQLException {
-        try {
-            LoginRunnable login = new LoginRunnable(this, "", "", "", "", "");
-            new Thread(login).start();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Intent toCreateProfile = new Intent(this, CreateProfile.class);
+        toCreateProfile.putExtra("mode", employerMode);
+        startActivity(toCreateProfile);
+//        try {
+//            LoginRunnable login = new LoginRunnable(this, "", "", "", "", "");
+//            new Thread(login).start();
+//        }
+//        catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void login (View v) throws SQLException {
