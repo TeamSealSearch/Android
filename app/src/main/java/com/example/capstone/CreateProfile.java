@@ -3,6 +3,7 @@ package com.example.capstone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class CreateProfile extends AppCompatActivity {
+    Intent i;
+    boolean employerMode;
 
     EditText fnameField;
     EditText lnameField;
@@ -34,6 +37,9 @@ public class CreateProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
 
+        i = getIntent();
+        employerMode = Boolean.parseBoolean(i.getStringExtra("mode"));
+
         fnameField = findViewById(R.id.createFirstName);
         lnameField = findViewById(R.id.createLastName);
         unameField = findViewById(R.id.createUsername);
@@ -48,11 +54,13 @@ public class CreateProfile extends AppCompatActivity {
     public void createUser(View v) throws SQLException {
         Log.d("CREATE", "WORKED");
 
-        LoginRunnable login = new LoginRunnable(this, "whatIsThisSupposedTobe",
+        CreateRunnable login = new CreateRunnable(this,
+        "whatIsThisSupposedTobe",
             unameField.getText().toString(),
             fnameField.getText().toString(),
             lnameField.getText().toString(),
-            dobField.getText().toString()
+            dobField.getText().toString(),
+            employerMode
         );
 //        login.run();
     }

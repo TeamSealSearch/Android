@@ -51,29 +51,34 @@ public class MainActivity extends AppCompatActivity {
         Intent toCreateProfile = new Intent(this, CreateProfile.class);
         toCreateProfile.putExtra("mode", employerMode);
         startActivity(toCreateProfile);
-//        try {
-//            LoginRunnable login = new LoginRunnable(this, "", "", "", "", "");
-//            new Thread(login).start();
-//        }
-//        catch (SQLException e) {
-//            e.printStackTrace();
-//        }
     }
 
-    public void login (View v) throws SQLException {
-        Intent toProfile = new Intent(this, JobsHub.class);
+    public void validateLogin(View v) throws SQLException {
+        LoginRunnable toVal = new LoginRunnable(
+            this,
+            usernameField.getText().toString(),
+            employerMode
+        );
+        new Thread(toVal).start();
+    }
 
-        if (employerMode) {
-            //build an employer intent
-            toProfile.putExtra("name", "John Sins");
-            toProfile.putExtra("mode", employerMode);
-            startActivity(toProfile);
-        }
+    public void validLogin (View v) throws SQLException {
+//        Intent toProfile = new Intent(this, JobsHub.class);
 
-        else { //build an applicant intent
-            toProfile.putExtra("name", "John Sins");
-            toProfile.putExtra("mode", employerMode);
-            startActivity(toProfile);
-        }
+        //check if valid login
+
+
+//        if (employerMode) {
+//            //build an employer intent
+//            toProfile.putExtra("name", "John Sins");
+//            toProfile.putExtra("mode", employerMode);
+//            startActivity(toProfile);
+//        }
+//
+//        else { //build an applicant intent
+//            toProfile.putExtra("name", "John Sins");
+//            toProfile.putExtra("mode", employerMode);
+//            startActivity(toProfile);
+//        }
     }
 }
