@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONObject;
+
 import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,23 +70,12 @@ public class MainActivity extends AppCompatActivity {
         new Thread(toVal).start();
     }
 
-    public void validLogin (View v) throws SQLException {
-//        Intent toProfile = new Intent(this, JobsHub.class);
+    public void validLogin (JSONObject userData) {
+        Intent toProfile = new Intent(this, JobsHub.class);
+        toProfile.putExtra("userData", userData.toString());
 
-        //check if valid login
+        if (employerMode) startActivity(toProfile);
 
-
-//        if (employerMode) {
-//            //build an employer intent
-//            toProfile.putExtra("name", "John Sins");
-//            toProfile.putExtra("mode", employerMode);
-//            startActivity(toProfile);
-//        }
-//
-//        else { //build an applicant intent
-//            toProfile.putExtra("name", "John Sins");
-//            toProfile.putExtra("mode", employerMode);
-//            startActivity(toProfile);
-//        }
+        else startActivity(toProfile);
     }
 }

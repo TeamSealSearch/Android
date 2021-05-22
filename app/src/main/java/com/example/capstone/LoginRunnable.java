@@ -12,7 +12,7 @@ public class LoginRunnable implements Runnable {
 
     private MainActivity main;
     private String QUERY = "SELECT * FROM %s WHERE a_username = '%s'"; //query for finding users with matching uName
-    private JSONObject loginInformation;
+    private JSONObject loginInformation = new JSONObject();
 
     private final String tableToQuery;
     private final String userName;
@@ -21,7 +21,7 @@ public class LoginRunnable implements Runnable {
         main = m;
         userName = uname;
 
-        if (mode == true)
+        if (mode)
             tableToQuery = "EMPLOYER";
         else
             tableToQuery = "APPLICANT";
@@ -37,13 +37,21 @@ public class LoginRunnable implements Runnable {
             Statement queryStatement = conn.createStatement();
             QUERY = String.format(QUERY, tableToQuery, userName);
 
-            StringBuilder sb = new StringBuilder();
-
             ResultSet rs = queryStatement.executeQuery(QUERY);
             rs.next();
             System.out.println("HERE -->\t" + rs.getString("a_fname"));
             System.out.println("HERE -->\t" + rs.getString("a_lname"));
 
+            loginInformation.put("userName", rs.getString("a_username"));
+            loginInformation.put("firstName", rs.getString("a_fname"));
+            loginInformation.put("lastName", rs.getString("a_lname"));
+            loginInformation.put("DOB", rs.getString("a_dob"));
+
+            //all the other fields?
+
+            conn.close();
+
+            main.runOnUiThread(() -> main.validLogin(loginInformation));
         }
 
         catch (Exception e) {e.printStackTrace();}
