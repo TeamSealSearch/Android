@@ -2,18 +2,24 @@ package com.example.capstone;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link job_posting#newInstance} factory method to
+ * Use the {@link job_posting_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class job_posting extends Fragment {
+public class job_posting_fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,8 +29,10 @@ public class job_posting extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private View main;
+    JSONObject jobData;
 
-    public job_posting() {
+    public job_posting_fragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +45,8 @@ public class job_posting extends Fragment {
      * @return A new instance of fragment job_posting.
      */
     // TODO: Rename and change types and number of parameters
-    public static job_posting newInstance(String param1, String param2) {
-        job_posting fragment = new job_posting();
+    public static job_posting_fragment newInstance(String param1, String param2) {
+        job_posting_fragment fragment = new job_posting_fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -50,7 +58,7 @@ public class job_posting extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getString("jobData");
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -60,5 +68,23 @@ public class job_posting extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_job_posting, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        main = getView();
+
+        try { jobData = new JSONObject(mParam1); }
+        catch (JSONException e) { e.printStackTrace(); }
+        try {
+            TextView jobTitle = main.findViewById(R.id.postingTitle); jobTitle.setText(jobData.getString("jobTitle"));
+            TextView jobCompany = main.findViewById(R.id.postingCompany); jobCompany.setText(jobData.getString("jobCompany"));
+            TextView jobExpLevel = main.findViewById(R.id.postingLevel); jobExpLevel.setText(jobData.getString("expLevel"));
+
+            TextView jobDescription = main.findViewById(R.id.postingDescription); jobDescription.setText(jobData.getString("jobDescription"));
+
+        } catch (Exception e) {e.printStackTrace();}
+
     }
 }

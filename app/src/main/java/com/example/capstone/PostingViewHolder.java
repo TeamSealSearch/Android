@@ -6,7 +6,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PostingViewHolder extends RecyclerView.ViewHolder {
+//https://www.avinsharma.com/android-basics-recyclerview-II/
+public class PostingViewHolder extends RecyclerView.ViewHolder{
 
     TextView jobTitle;
     TextView company;
@@ -18,6 +19,7 @@ public class PostingViewHolder extends RecyclerView.ViewHolder {
         jobTitle = view.findViewById(R.id.cardJobTitle);
         company = view.findViewById(R.id.cardCompany);
         qualifications = view.findViewById(R.id.cardQualifications);
+
     }
 
 }

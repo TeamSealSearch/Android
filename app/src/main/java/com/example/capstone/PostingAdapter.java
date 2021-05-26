@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,9 +15,11 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingViewHolder> {
 
     Context context;
     ArrayList<Posting> postings;
+    private browseJobs_applicantMain main;
 
-    public PostingAdapter (ArrayList<Posting> p) {
+    public PostingAdapter (ArrayList<Posting> p, browseJobs_applicantMain frag) {
         postings = p;
+        main = frag;
     }
 
     @Override
@@ -24,6 +27,8 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingViewHolder> {
         View view = LayoutInflater
                         .from(parent.getContext())
                         .inflate(R.layout.browse_posting_card, parent, false);
+        view.setOnClickListener(main);
+
         return new PostingViewHolder(view);
     }
 

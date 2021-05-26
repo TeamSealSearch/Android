@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/jobTitle"
+        android:id="@+id/postingTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -19,7 +19,7 @@
         tools:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/postingCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -27,12 +27,12 @@
         android:layout_marginEnd="8dp"
         android:text="Cool Company"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/jobTitle"
-        app:layout_constraintStart_toStartOf="@+id/jobTitle"
-        app:layout_constraintTop_toBottomOf="@+id/jobTitle" />
+        app:layout_constraintEnd_toEndOf="@+id/postingTitle"
+        app:layout_constraintStart_toStartOf="@+id/postingTitle"
+        app:layout_constraintTop_toBottomOf="@+id/postingTitle" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/postingDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -51,7 +51,7 @@
         app:layout_constraintGuide_percent="0.3" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/postingLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -59,7 +59,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/postingCompany" />
 
     <Button
         android:id="@+id/button2"

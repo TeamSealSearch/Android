@@ -12,14 +12,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -36,7 +39,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  *
  */
-public class browseJobs_applicantMain extends Fragment {
+public class browseJobs_applicantMain extends Fragment implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -114,7 +117,7 @@ public class browseJobs_applicantMain extends Fragment {
         setPicture();
 
         //Set toolbar
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Browse jobs");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Your Profile");
 
         setupRecycler();
 
@@ -137,22 +140,23 @@ public class browseJobs_applicantMain extends Fragment {
 
         fetchAvailableJobs();
 
-        adapter = new PostingAdapter(postings);
+        adapter = new PostingAdapter(postings, this);
 
         HorizontalLayout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(HorizontalLayout);
 
         recyclerView.setAdapter(adapter);
+
     }
 
     //implement database fetch query
     private void fetchAvailableJobs() {
-        postings.add(new Posting());
-        postings.add(new Posting());
-        postings.add(new Posting());
-        postings.add(new Posting());
-        postings.add(new Posting());
-        postings.add(new Posting());
+        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Google", "Entry Level"));
+        postings.add(new Posting("Software Engineer II", "IT, IT Certs, Experience, 90 Hours Availability", "Amazon", "Senior Level"));
+        postings.add(new Posting("Software Engineer III", "IT, CS Degree, Experience, Social skills", "Depaul", "Mid Level"));
+        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Uber", "Entry Level"));
+        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Netflix", "Entry Level"));
+        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Grubhub", "Entry Level"));
 
     }
 
@@ -166,10 +170,43 @@ public class browseJobs_applicantMain extends Fragment {
             filter.setChipBackgroundColorResource(R.color.applicantPrimary);
             filter.setCloseIconVisible(true);
             filter.setWidth(12);
+            filter.setElevation(8);
 
             chipGroup.addView(filter);
         }
+    }
 
 
+    @Override
+    public void onClick(View view) {
+        int pos = recyclerView.getChildLayoutPosition(view);
+        JSONObject postingData = new JSONObject();
+        Posting forFragment = postings.get(pos);
+
+        try {
+            postingData.put("jobTitle", forFragment.getJobTitle());
+            postingData.put("jobCompany", forFragment.getCompany());
+            postingData.put("expLevel", forFragment.getExpLevel());
+            postingData.put("jobDescription", forFragment.getJobDescription());
+
+            //prepare data
+            Bundle jobPostingBundle = new Bundle();
+            jobPostingBundle.putString("jobData", postingData.toString());
+
+            //set up fragment with data
+            Fragment postingFrag = new job_posting_fragment();
+            postingFrag.setArguments(jobPostingBundle);
+
+            getActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+                .replace(R.id.flContent, postingFrag)
+                .addToBackStack(null)
+                .commit();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

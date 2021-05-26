@@ -9,7 +9,7 @@
     android:layout_marginTop="5dp"
     android:layout_marginEnd="5dp"
     android:layout_marginBottom="5dp"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="6dp"
     app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,12 +31,12 @@
             android:id="@+id/cardCompany"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="Company"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardJobTitle"
-            tools:textSize="12sp" />
+            tools:textSize="14sp" />
 
         <TextView
             android:id="@+id/cardQualifications"
