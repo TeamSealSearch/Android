@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="windowBackgroundColor" format="color" />
+    <attr name="buttonColor" format="color" />
+    <attr name="textColor" format="color" />
+    <attr name="statusbarColor" format="color" />
+
+</resources>

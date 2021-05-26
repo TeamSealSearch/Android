@@ -1,13 +1,17 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="ApplicantTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="ApplicantTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/applicantPrimary</item>
         <item name="colorPrimaryDark">@color/applicantPrimaryDark</item>
         <item name="colorAccent">@color/applicantAccent</item>
-        <item name="android:colorBackground"> @color/applicantPrimary</item>
-        <item name="android:background"> @color/applicantPrimary </item>
-        <item name="android:button"> @color/applicantPrimary </item>
+
+        <item name="colorButtonNormal">@color/applicantAccent</item>
+
+        <item name="windowBackgroundColor"> @color/applicantPrimary</item>
+        <item name="buttonColor"> @color/applicantAccent</item>
+        <item name="statusbarColor"> @color/applicantPrimaryDark</item>
+
     </style>
 
     <style name="EmployerTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -17,12 +21,17 @@
         <item name="colorAccent">@color/employerAccent</item>
         <item name="android:colorBackground"> @color/employerPrimary</item>
 
+        <item name="windowBackgroundColor"> @color/employerPrimary</item>
+        <item name="buttonColor"> @color/employerAccent</item>
+        <item name="statusbarColor"> @color/employerPrimaryDark</item>
+
     </style>
 
     <style name="ApplicantTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

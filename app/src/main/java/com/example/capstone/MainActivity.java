@@ -73,9 +73,8 @@ public class MainActivity extends AppCompatActivity {
     public void validLogin (JSONObject userData) {
         Intent toProfile = new Intent(this, JobsHub.class);
         toProfile.putExtra("userData", userData.toString());
+        toProfile.putExtra("mode", employerMode);
 
-        if (employerMode) startActivity(toProfile);
-
-        else startActivity(toProfile);
+        startActivity(toProfile);
     }
 }

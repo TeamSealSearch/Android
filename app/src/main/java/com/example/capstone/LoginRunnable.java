@@ -39,8 +39,6 @@ public class LoginRunnable implements Runnable {
 
             ResultSet rs = queryStatement.executeQuery(QUERY);
             rs.next();
-            System.out.println("HERE -->\t" + rs.getString("a_fname"));
-            System.out.println("HERE -->\t" + rs.getString("a_lname"));
 
             loginInformation.put("userName", rs.getString("a_username"));
             loginInformation.put("firstName", rs.getString("a_fname"));
@@ -48,7 +46,6 @@ public class LoginRunnable implements Runnable {
             loginInformation.put("DOB", rs.getString("a_dob"));
 
             //all the other fields?
-
             conn.close();
 
             main.runOnUiThread(() -> main.validLogin(loginInformation));

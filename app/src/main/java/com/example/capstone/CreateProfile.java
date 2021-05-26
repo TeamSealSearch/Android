@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import org.json.JSONObject;
+
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,14 +47,10 @@ public class CreateProfile extends AppCompatActivity {
         unameField = findViewById(R.id.createUsername);
         dobField = findViewById(R.id.createDOB);
 
-        experienceNumber = findViewById(R.id.createExperience);
-        problemSolvingNumber = findViewById(R.id.createProblemSolving);
-        degreeNumber = findViewById(R.id.createDegree);
         setupFields();
     }
 
     public void createUser(View v) throws SQLException {
-        Log.d("CREATE", "WORKED");
 
         CreateRunnable login = new CreateRunnable(this,
         "whatIsThisSupposedTobe",
@@ -62,7 +60,16 @@ public class CreateProfile extends AppCompatActivity {
             dobField.getText().toString(),
             employerMode
         );
-//        login.run();
+
+        login.run();
+    }
+
+    public void catchLogin (JSONObject userData) {
+        Intent i = new Intent(this, JobsHub.class);
+        i.putExtra("userData", userData.toString());
+        i.putExtra("mode", employerMode);
+
+        startActivity(i);
     }
 
     private void setupFields() {
@@ -87,15 +94,14 @@ public class CreateProfile extends AppCompatActivity {
         };
 
 
-        dobField.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DatePickerDialog(CreateProfile.this, datePickerListener, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-
-            }
-        });
+        dobField.setOnClickListener(
+            view ->
+            new DatePickerDialog(CreateProfile.this, datePickerListener,
+                myCalendar.get(Calendar.YEAR),
+                myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        );
 
     }
 }

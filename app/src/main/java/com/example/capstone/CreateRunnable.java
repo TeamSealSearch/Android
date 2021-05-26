@@ -1,5 +1,7 @@
 package com.example.capstone;
 
+import android.content.Intent;
+
 import org.json.JSONObject;
 
 import java.sql.Connection;
@@ -12,7 +14,7 @@ public class CreateRunnable implements Runnable {
 
     private CreateProfile main;
     private String INSERT_APPLICANT = "INSERT INTO APPLICANT (a_hashedid, a_username, a_fname, a_lname, a_dob) VALUES (%s, %s, %s, %s, %s)";
-    private JSONObject accountInformation;
+    private JSONObject userData = new JSONObject();
 
     private boolean employerMode;
     private final String hashedID;
@@ -31,7 +33,7 @@ public class CreateRunnable implements Runnable {
         date_of_birth = DOB;
         employerMode = mode;
 
-        if (mode = true)
+        if (mode)
             tableToQuery = "EMPLOYER";
         else
             tableToQuery = "APPLICANT";
@@ -40,19 +42,25 @@ public class CreateRunnable implements Runnable {
     @Override
     public void run() {
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String azureURL = "jdbc:mysql://sealsearch.mysql.database.azure.com:3306/sealdb?useSSL=true&requireSSL=true";
-            Connection conn = DriverManager.getConnection(azureURL, "kingSeal@sealsearch", "Password1");
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            String azureURL = "jdbc:mysql://sealsearch.mysql.database.azure.com:3306/sealdb?useSSL=true&requireSSL=true";
+//            Connection conn = DriverManager.getConnection(azureURL, "kingSeal@sealsearch", "Password1");
+//
+//            Statement stmt = conn.createStatement();
+//            INSERT_APPLICANT = String.format(INSERT_APPLICANT, "'WhatsAHashedID'", userName, firstName, lastName, date_of_birth);
+//
+//            int rs = stmt.executeUpdate(INSERT_APPLICANT);
+//
+//            System.out.println("HERE -->\t" + rs);
 
-            Statement queryStatement = conn.createStatement();
-            INSERT_APPLICANT = String.format(INSERT_APPLICANT, "'WhatsAHashedID'", userName, firstName, lastName, date_of_birth);
-
-            StringBuilder sb = new StringBuilder();
-
-            Statement stmt = conn.createStatement();
-            int rs = stmt.executeUpdate(INSERT_APPLICANT);
-
-            System.out.println("HERE -->\t" + rs);
+            //Fake data because connect statement won't work.
+            JSONObject userData = new JSONObject();
+            userData.put("userName", userName);
+            userData.put("firstName", firstName);
+            userData.put("lastName", lastName);
+            userData.put("DOB", date_of_birth);
+            
+            main.runOnUiThread(() -> main.catchLogin(userData));
         }
 
         catch (Exception e) {e.printStackTrace();}
