@@ -11,7 +11,10 @@
         <item name="windowBackgroundColor"> @color/applicantPrimary</item>
         <item name="buttonColor"> @color/applicantAccent</item>
         <item name="statusbarColor"> @color/applicantPrimaryDark</item>
+    </style>
 
+    <style name="AlertDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="colorPrimary"> @color/applicantAccent </item>
     </style>
 
     <style name="EmployerTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -24,7 +27,6 @@
         <item name="windowBackgroundColor"> @color/employerPrimary</item>
         <item name="buttonColor"> @color/employerAccent</item>
         <item name="statusbarColor"> @color/employerPrimaryDark</item>
-
     </style>
 
     <style name="ApplicantTheme.NoActionBar">

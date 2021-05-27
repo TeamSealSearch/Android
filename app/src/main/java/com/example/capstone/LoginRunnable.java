@@ -40,10 +40,17 @@ public class LoginRunnable implements Runnable {
             ResultSet rs = queryStatement.executeQuery(QUERY);
             rs.next();
 
-            loginInformation.put("userName", rs.getString("a_username"));
-            loginInformation.put("firstName", rs.getString("a_fname"));
-            loginInformation.put("lastName", rs.getString("a_lname"));
-            loginInformation.put("DOB", rs.getString("a_dob"));
+            try {
+
+                loginInformation.put("userName", rs.getString("a_username"));
+                loginInformation.put("firstName", rs.getString("a_fname"));
+                loginInformation.put("lastName", rs.getString("a_lname"));
+                loginInformation.put("DOB", rs.getString("a_dob"));
+            } catch (SQLException e) {
+                main.runOnUiThread(() -> main.invalidLogin());
+                return;
+            }
+
 
             //all the other fields?
             conn.close();
