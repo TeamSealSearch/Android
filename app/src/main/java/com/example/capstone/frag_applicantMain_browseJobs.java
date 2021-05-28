@@ -2,27 +2,22 @@ package com.example.capstone;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -30,16 +25,15 @@ import com.google.android.material.chip.ChipGroup;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link browseJobs_applicantMain#newInstance} factory method to
+ * Use the {@link frag_applicantMain_browseJobs#newInstance} factory method to
  * create an instance of this fragment.
  *
  */
-public class browseJobs_applicantMain extends Fragment implements View.OnClickListener{
+public class frag_applicantMain_browseJobs extends Fragment implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,8 +62,8 @@ public class browseJobs_applicantMain extends Fragment implements View.OnClickLi
      * @return A new instance of fragment browseJobs_applicantMain.
      */
     // TODO: Rename and change types and number of parameters
-    public static browseJobs_applicantMain newInstance(String param1, String param2) {
-        browseJobs_applicantMain fragment = new browseJobs_applicantMain();
+    public static frag_applicantMain_browseJobs newInstance(String param1, String param2) {
+        frag_applicantMain_browseJobs fragment = new frag_applicantMain_browseJobs();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -77,7 +71,7 @@ public class browseJobs_applicantMain extends Fragment implements View.OnClickLi
         return fragment;
     }
 
-    public browseJobs_applicantMain() {
+    public frag_applicantMain_browseJobs() {
         // Required empty public constructor
     }
 
@@ -193,7 +187,7 @@ public class browseJobs_applicantMain extends Fragment implements View.OnClickLi
             jobPostingBundle.putString("jobData", postingData.toString());
 
             //set up fragment with data
-            Fragment postingFrag = new job_posting_fragment();
+            Fragment postingFrag = new frag_jobPosting();
             postingFrag.setArguments(jobPostingBundle);
 
             getActivity()

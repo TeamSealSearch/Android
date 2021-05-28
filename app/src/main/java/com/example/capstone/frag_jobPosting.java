@@ -16,10 +16,10 @@ import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link job_posting_fragment#newInstance} factory method to
+ * Use the {@link frag_jobPosting#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class job_posting_fragment extends Fragment {
+public class frag_jobPosting extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +32,7 @@ public class job_posting_fragment extends Fragment {
     private View main;
     JSONObject jobData;
 
-    public job_posting_fragment() {
+    public frag_jobPosting() {
         // Required empty public constructor
     }
 
@@ -45,8 +45,8 @@ public class job_posting_fragment extends Fragment {
      * @return A new instance of fragment job_posting.
      */
     // TODO: Rename and change types and number of parameters
-    public static job_posting_fragment newInstance(String param1, String param2) {
-        job_posting_fragment fragment = new job_posting_fragment();
+    public static frag_jobPosting newInstance(String param1, String param2) {
+        frag_jobPosting fragment = new frag_jobPosting();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

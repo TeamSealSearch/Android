@@ -16,11 +16,11 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingViewHolder> {
 
     Context context;
     ArrayList<Posting> postings;
-    private browseJobs_applicantMain main;
+    private frag_applicantMain_browseJobs main;
     private long DURATION = 200;
     private boolean on_attach = true;
 
-    public PostingAdapter (ArrayList<Posting> p, browseJobs_applicantMain frag) {
+    public PostingAdapter (ArrayList<Posting> p, frag_applicantMain_browseJobs frag) {
         postings = p;
         main = frag;
     }

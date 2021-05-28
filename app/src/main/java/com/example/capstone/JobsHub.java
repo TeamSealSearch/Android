@@ -1,33 +1,18 @@
 package com.example.capstone;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -58,12 +43,19 @@ public class JobsHub extends AppCompatActivity {
 
         Bundle fragUserData = new Bundle();
         fragUserData.putString("userData", userData.toString());
-        Fragment homeFrag = new browseJobs_applicantMain();
+        Fragment homeFrag = new frag_applicantMain_browseJobs();
         homeFrag.setArguments(fragUserData);
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.flContent, homeFrag)
+                .addToBackStack(null)
+                .setCustomAnimations(
+                        R.anim.slide_in,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.slide_out
+                )
                 .commit();
 
         //replace actionbar with the toolbar
@@ -150,7 +142,7 @@ public class JobsHub extends AppCompatActivity {
 //                fragmentClass = ThirdFragment.class;
 //                break;
             default:
-                fragmentClass = browseJobs_applicantMain.class;
+                fragmentClass = frag_applicantMain_browseJobs.class;
         }
 
         try {
@@ -160,7 +152,16 @@ public class JobsHub extends AppCompatActivity {
 
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        fragmentManager.beginTransaction()
+                .replace(R.id.flContent, fragment)
+                .setCustomAnimations(
+                        R.anim.slide_in,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.slide_out
+                )
+                .addToBackStack(null)
+                .commit();
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
