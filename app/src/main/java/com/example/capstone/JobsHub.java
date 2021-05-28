@@ -48,14 +48,14 @@ public class JobsHub extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flContent, homeFrag)
-                .addToBackStack(null)
                 .setCustomAnimations(
                         R.anim.slide_in,
                         R.anim.fade_out,
                         R.anim.fade_in,
                         R.anim.slide_out
                 )
+                .replace(R.id.flContent, homeFrag)
+                .addToBackStack(null)
                 .commit();
 
         //replace actionbar with the toolbar
@@ -153,13 +153,13 @@ public class JobsHub extends AppCompatActivity {
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.flContent, fragment)
                 .setCustomAnimations(
                         R.anim.slide_in,
                         R.anim.fade_out,
                         R.anim.fade_in,
                         R.anim.slide_out
                 )
+                .replace(R.id.flContent, fragment)
                 .addToBackStack(null)
                 .commit();
 
