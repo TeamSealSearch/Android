@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,7 @@ public class frag_jobPosting extends Fragment {
     private String mParam2;
     private View main;
     JSONObject jobData;
+    Button applyButton;
 
     public frag_jobPosting() {
         // Required empty public constructor
@@ -84,7 +87,18 @@ public class frag_jobPosting extends Fragment {
 
             TextView jobDescription = main.findViewById(R.id.postingDescription); jobDescription.setText(jobData.getString("jobDescription"));
 
+            applyButton = main.findViewById(R.id.applyButton);
+            applyButton.setOnClickListener(view1 -> applyTojob(view1));
+
         } catch (Exception e) {e.printStackTrace();}
 
+    }
+
+    public void applyTojob(View v) {
+        try {
+            Toast.makeText(getContext(), "You have successfully applied to " + jobData.getString("jobTitle"), Toast.LENGTH_SHORT).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
