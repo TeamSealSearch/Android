@@ -83,6 +83,13 @@ public class frag_applicantMain_browseJobs extends Fragment implements View.OnCl
 
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Google", "Entry Level"));
+        postings.add(new Posting("Software Engineer II", "IT, IT Certs, Experience, 90 Hours Availability", "Amazon", "Senior Level"));
+        postings.add(new Posting("Software Engineer III", "IT, CS Degree, Experience, Social skills", "Depaul", "Mid Level"));
+        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Uber", "Entry Level"));
+        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Netflix", "Entry Level"));
+        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Grubhub", "Entry Level"));
     }
 
     @Override
@@ -132,7 +139,7 @@ public class frag_applicantMain_browseJobs extends Fragment implements View.OnCl
 
         recyclerView.setLayoutManager(manager);
 
-        fetchAvailableJobs();
+//        fetchAvailableJobs();
 
         adapter = new PostingAdapter(postings, this);
 
@@ -144,14 +151,14 @@ public class frag_applicantMain_browseJobs extends Fragment implements View.OnCl
     }
 
     //implement database fetch query
-    private void fetchAvailableJobs() {
-        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Google", "Entry Level"));
-        postings.add(new Posting("Software Engineer II", "IT, IT Certs, Experience, 90 Hours Availability", "Amazon", "Senior Level"));
-        postings.add(new Posting("Software Engineer III", "IT, CS Degree, Experience, Social skills", "Depaul", "Mid Level"));
-        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Uber", "Entry Level"));
-        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Netflix", "Entry Level"));
-        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Grubhub", "Entry Level"));
-    }
+//    private void fetchAvailableJobs() {
+//        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Google", "Entry Level"));
+//        postings.add(new Posting("Software Engineer II", "IT, IT Certs, Experience, 90 Hours Availability", "Amazon", "Senior Level"));
+//        postings.add(new Posting("Software Engineer III", "IT, CS Degree, Experience, Social skills", "Depaul", "Mid Level"));
+//        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Uber", "Entry Level"));
+//        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Netflix", "Entry Level"));
+//        postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Grubhub", "Entry Level"));
+//    }
 
     private void setupChips() {
         ChipGroup chipGroup = main.findViewById(R.id.chipFilters);
