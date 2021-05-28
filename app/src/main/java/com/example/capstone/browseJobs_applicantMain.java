@@ -157,7 +157,6 @@ public class browseJobs_applicantMain extends Fragment implements View.OnClickLi
         postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Uber", "Entry Level"));
         postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Netflix", "Entry Level"));
         postings.add(new Posting("Software Engineer I", "IT, CS Degree, Experience, Social skills", "Grubhub", "Entry Level"));
-
     }
 
     private void setupChips() {

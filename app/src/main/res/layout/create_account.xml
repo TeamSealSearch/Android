@@ -54,6 +54,7 @@
         android:layout_marginBottom="32dp"
         android:onClick="createUser"
         android:text="Create"
+        android:backgroundTint="@color/applicantAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/button6"
         app:layout_constraintHorizontal_bias="0.498"
@@ -68,6 +69,8 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:text="Add resume"
+        android:backgroundTint="@color/applicantAccent"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
