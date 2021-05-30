@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
@@ -104,6 +105,9 @@ public class frag_applicantMain_browseJobs extends Fragment implements View.OnCl
         super.onViewCreated(view, savedInstanceState);
         main = getView();
         profilePic = main.findViewById(R.id.browseProfilePic);
+
+        CardView profileCard = main.findViewById(R.id.profileCard);
+        profileCard.setOnClickListener(view1 -> detailedApplicant(view1));
 
         try { userData = new JSONObject(mParam1); }
         catch (JSONException e) { e.printStackTrace(); }
@@ -208,5 +212,17 @@ public class frag_applicantMain_browseJobs extends Fragment implements View.OnCl
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void detailedApplicant(View v) {
+        Fragment profileFrag = new frag_detailedApplicant();
+
+        getActivity()
+            .getSupportFragmentManager()
+            .beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+            .replace(R.id.flContent, profileFrag)
+            .addToBackStack(null)
+            .commit();
     }
 }
