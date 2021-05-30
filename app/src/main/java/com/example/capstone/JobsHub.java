@@ -135,10 +135,10 @@ public class JobsHub extends AppCompatActivity {
             case R.id.a_followedCompanies:
                 fragmentClass = followedCompanies.class;
                 break;
-//            case R.id.nav_second_fragment:
-//                fragmentClass = SecondFragment.class;
-//                break;
-//            case R.id.nav_third_fragment:
+            case R.id.a_modResume:
+                fragmentClass = frag_modifyResume.class;
+                break;
+//            case R.id.a_modFilters:
 //                fragmentClass = ThirdFragment.class;
 //                break;
             default:
