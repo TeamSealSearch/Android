@@ -94,7 +94,7 @@ public class frag_jobPosting extends Fragment {
 
     }
 
-    public void applyTojob(View v) {
+    public void applyTojob (View v) {
         try {
             Toast.makeText(getContext(), "You have successfully applied to " + jobData.getString("jobTitle"), Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
