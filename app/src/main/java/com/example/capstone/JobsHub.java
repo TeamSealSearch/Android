@@ -1,11 +1,13 @@
 package com.example.capstone;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -95,11 +97,15 @@ public class JobsHub extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item))
             return true;
+        else {
+            Uri settingsURL = Uri.parse("https://sealsearchjobs.azurewebsites.net/Settings");
+
+            Intent openBrowser = new Intent(Intent.ACTION_VIEW, settingsURL);
+            startActivity(openBrowser);
+        }
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
     private void setupDrawer() throws JSONException {
         //only show the relevant menu items for a user
