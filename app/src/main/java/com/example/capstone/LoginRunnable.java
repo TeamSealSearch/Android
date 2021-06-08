@@ -40,8 +40,8 @@ public class LoginRunnable implements Runnable {
     public void run() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String azureURL = "jdbc:mysql://sealsearch.mysql.database.azure.com:3306/sealdb?useSSL=true&requireSSL=true";
-            Connection conn = DriverManager.getConnection(azureURL, "kingSeal@sealsearch", "Password1");
+            String azureURL = "jdbc:mysql://thesealsearchserver.mysql.database.azure.com:3306/sealdb?useSSL=true&requireSSL=false";
+            Connection conn = DriverManager.getConnection(azureURL, "KingSeal@thesealsearchserver", "Password1");
 
             Statement queryStatement = conn.createStatement();
             QUERY = String.format(QUERY, tableToQuery, usernameColumn, userName);

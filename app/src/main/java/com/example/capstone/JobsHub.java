@@ -32,7 +32,7 @@ public class JobsHub extends AppCompatActivity {
     private NavigationView navigationView;
 
     private ActionBarDrawerToggle drawerToggle;
-    private boolean employerMode = false;
+    private boolean employerMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,12 @@ public class JobsHub extends AppCompatActivity {
         setContentView(R.layout.hub_activity_main);
 
         Intent i = getIntent();
+
         try { userData = new JSONObject(i.getStringExtra("userData")); }
         catch (Exception e) { e.printStackTrace(); }
+
+        employerMode = i.getBooleanExtra("mode", false);
+
 
         Bundle fragUserData = new Bundle();
         fragUserData.putString("userData", userData.toString());
