@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
-                                    android:text="ProjectsHere\nProjectsHere\nProjectsHere\nProjectsHere\nProjectsHere\n"
+                                    android:text="Project 1\nProject 2\nProject 3\nProject 4\nProject 5\n\n"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -110,7 +110,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="4dp"
                                     android:layout_marginTop="4dp"
-                                    android:text="I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun I am a seal with a gun "
+                                    android:text="What the heck did you just say about me, you little seal? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed job postings. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces."
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -147,8 +147,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="4dp"
-                                    android:layout_marginTop="4dp"
-                                    android:text="Education \nEducation \nEducation \n"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="Bachelor of Seal, DePaul University 2021\n\nHarvard "
+                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -186,7 +187,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="4dp"
                                     android:layout_marginTop="4dp"
-                                    android:text="I worked at DePaul\nI worked at DePaul\nI worked at DePaul\n"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="U.S Navy Seal (Proud Veteran)\n\nNavy Seal Recruiter"
+                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -246,7 +249,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
-                                    android:text="Resume here\nResume here\nResume here\nResume here\nResume here\n"
+                                    android:gravity="center"
+                                    android:text="Download Resume"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -293,7 +297,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
-                                    android:text="I am skilled\nI am skilled\nI am skilled\nI am skilled\nI am skilled\n"
+                                    android:gravity="center"
+                                    android:text="Seal\nSwimming\nSniper\nPatriot"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
