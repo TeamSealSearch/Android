@@ -42,26 +42,30 @@ public class CreateProfile extends AppCompatActivity {
         i = getIntent();
         employerMode = Boolean.parseBoolean(i.getStringExtra("mode"));
 
+        unameField = findViewById(R.id.createUsername);
         fnameField = findViewById(R.id.createFirstName);
         lnameField = findViewById(R.id.createLastName);
-        unameField = findViewById(R.id.createUsername);
         dobField = findViewById(R.id.createDOB);
+        emailField = findViewById(R.id.createEmailField);
+        phoneNumberField = findViewById(R.id.editTextPhone);
 
         setupFields();
     }
 
     public void createUser(View v) throws SQLException {
 
-        CreateRunnable login = new CreateRunnable(this,
-        "whatIsThisSupposedTobe",
+        CreateRunnable create = new CreateRunnable(this,
+            String.valueOf(unameField.getText().toString().hashCode()),
             unameField.getText().toString(),
             fnameField.getText().toString(),
             lnameField.getText().toString(),
             dobField.getText().toString(),
+            emailField.getText().toString(),
+            phoneNumberField.getText().toString(),
             employerMode
         );
 
-        login.run();
+        new Thread(create).start();
     }
 
     public void catchLogin (JSONObject userData) {
