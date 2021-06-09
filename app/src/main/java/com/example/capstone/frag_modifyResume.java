@@ -1,12 +1,18 @@
 package com.example.capstone;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +66,25 @@ public class frag_modifyResume extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_modify_resume, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Button b = getView().findViewById(R.id.modButton);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modifyResume(view);
+            }
+        });
+    }
+
+    public void modifyResume(View v) {
+        Toast.makeText(getContext(), "Sending you to SealSearch..", Toast.LENGTH_LONG).show();
+
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sealsearchcareers.azurewebsites.net/Edit%20Resume"));
+        startActivity(i);
     }
 }

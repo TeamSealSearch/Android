@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -166,18 +167,34 @@ public class frag_applicantMain_browseJobs extends Fragment implements View.OnCl
 
     private void setupChips() {
         ChipGroup chipGroup = main.findViewById(R.id.chipFilters);
-        ArrayList<Chip> chips = new ArrayList<>();
 
-        for (int i=1; i <= 6; i++) {
-            Chip filter = new Chip(getContext());
-            filter.setText("Test filter: " + i);
-            filter.setChipBackgroundColorResource(R.color.applicantPrimary);
-            filter.setCloseIconVisible(true);
-            filter.setWidth(12);
-            filter.setElevation(8);
+        try {
+            JSONObject test = userData.getJSONObject("filters");
+            for (int i = 0; i < test.length(); i++) {
+                Chip filter = new Chip(getContext());
+                filter.setText(test.getString(String.format("f%d", i+1)));
+                filter.setChipBackgroundColorResource(R.color.applicantPrimary);
+                filter.setPadding(2, 2, 2, 2);
+                filter.setCloseIconVisible(true);
+                filter.setElevation(8);
 
-            chipGroup.addView(filter);
+                chipGroup.addView(filter);
+//                Log.d("Chip", test.getString(String.format("f%d", i+1)));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+//        for (int i=1; i <= 6; i++) {
+//            Chip filter = new Chip(getContext());
+//            filter.setText("Test filter: " + i);
+//            filter.setChipBackgroundColorResource(R.color.applicantPrimary);
+//            filter.setCloseIconVisible(true);
+//            filter.setWidth(12);
+//            filter.setElevation(8);
+//
+//            chipGroup.addView(filter);
+//        }
     }
 
 

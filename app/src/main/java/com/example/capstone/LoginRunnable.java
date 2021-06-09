@@ -51,10 +51,20 @@ public class LoginRunnable implements Runnable {
 
             if (!mode) { //if applicant
                 try {
+                    JSONObject filter = new JSONObject();
+                    filter.put("f1", "Engineering");
+                    filter.put("f2", "Liberal Arts");
+                    filter.put("f3", "History");
+                    filter.put("f4", "Humanities");
+                    filter.put("f5", "Medical");
+                    filter.put("f6", "Business");
+
                     loginInformation.put("userName", rs.getString("a_username"));
                     loginInformation.put("firstName", rs.getString("a_fname"));
                     loginInformation.put("lastName", rs.getString("a_lname"));
                     loginInformation.put("DOB", rs.getString("a_dob"));
+
+                    loginInformation.put("filters", filter);
                 } catch (SQLException e) {
                     main.runOnUiThread(() -> main.invalidLogin());
                     return;

@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         createButton = findViewById(R.id.loginCreateButton);
 
         //Graphical set up
-        toggleModeButton = findViewById(R.id.loginToggleButton);
-        toggleModeButton.setText(String.format(toggleFormatString, "Employer"));
 
         setTheme(R.style.EmployerTheme);
     }

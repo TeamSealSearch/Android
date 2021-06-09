@@ -102,7 +102,7 @@ public class JobsHub extends AppCompatActivity {
         if (drawerToggle.onOptionsItemSelected(item))
             return true;
         else {
-            Uri settingsURL = Uri.parse("https://sealsearchjobs.azurewebsites.net/Settings");
+            Uri settingsURL = Uri.parse("https://sealsearchcareers.azurewebsites.net/Accounts/Settings");
 
             Intent openBrowser = new Intent(Intent.ACTION_VIEW, settingsURL);
             startActivity(openBrowser);
